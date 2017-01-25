@@ -2,11 +2,10 @@
 <html class="no-js">
 <head>
     <meta charset="utf-8">
-    <title>Pixis.Js</title>
+    <title>Pixi Shape</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="dist/styles.css"/>
-    <!-- endbuild -->
 </head>
 <body>
     <!--[if lt IE 7]>
@@ -26,7 +25,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" ui-sref="home">
-                        Pixis.Js
+                        Pixi Shape
                     </a>
                 </div>
 
@@ -48,7 +47,9 @@
                 </div>
             </div>
         </nav>
-        <div ui-view></div>
+        <div>
+           <canvas id="stage"></canvas>
+        </div>
         <div class="footer">
             <hr />
             <!--<p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>-->
@@ -56,6 +57,8 @@
     </div>
 
     <script src="../lib/pixi.js"></script>
+    <script src="scripts/fpsmeter.min.js"></script>
+    <script src="scripts/Box2dWeb-2.1.a.3.min.js"></script>
     <script type="text/javascript" src="dist/bundle.js"></script>
 </body>
 </html>

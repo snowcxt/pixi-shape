@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "@types/jquery": "^2.0.39",
     "@types/pixi.js": "^4.3.1",
     "awesome-typescript-loader": "^3.0.0-beta.18",
     "bootstrap": "^3.3.7",
