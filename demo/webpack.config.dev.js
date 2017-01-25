@@ -1,4 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
     entry: "./demo/scripts/index.ts",
@@ -7,7 +9,7 @@ module.exports = {
         path: __dirname + "/dist"
     },
     // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
+    // devtool: "source-map",
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
@@ -39,6 +41,21 @@ module.exports = {
         new ExtractTextPlugin({
             filename: "styles.css",
             allChunks: true
+        }),
+        new OptimizeCssAssetsPlugin({
+            cssProcessorOptions: {
+                discardComments: {
+                    removeAll: true
+                }
+            },
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            output: {
+                comments: false
+            }
         })
     ]
 };
