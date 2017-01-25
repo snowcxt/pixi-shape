@@ -120,7 +120,7 @@ export function init() {
         shapeList.push(new Shape(i, body, stage, explosion, x, y));
     }
 
-    const meter = new FPSMeter(document.body, {
+    const meter = new FPSMeter(document.getElementById("meter"), {
         theme: "transparent",
         heat: true,
         graph: true
