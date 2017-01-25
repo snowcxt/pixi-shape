@@ -6,6 +6,7 @@ import {Group} from "../../src/Group";
 import {Text} from "../../src/Text";
 import {Tween} from "../../src/Animation";
 import {Line} from "../../src/Line";
+import {Circle} from "../../src/Circle";
 
 declare var require: any;
 declare var FPSMeter: any;
@@ -137,29 +138,30 @@ export function init() {
         const x = localCoordsPosition.x, y = localCoordsPosition.y;
         return { x: x, y: y };
     }
-
-    // stage.stage.touchstart = stage.stage.mousedown = (mouseData: PIXI.InteractionData) => {
-    //     var position = getCellByMouseData(mouseData);
-    //     var hit = new Pixis.Circle({
-    //         x: position.x,
-    //         y: position.y,
-    //         stroke: 0xFFFF00,
-    //         strokeWidth: 3,
-    //         radius: 1
-    //     });
-    //     stage.add(hit);
-    //     hit.tween(1, {
-    //         radius: 40,
-    //         strokeOpacity: 0
-    //     }).play({
-    //         done: () => {
-    //             hit.clear();
-    //         }
-    //     });
-    //     shapeList.forEach((s) => {
-    //         s.impulse(position);
-    //     });
-    // };
+    stage.stage.interactive = true;
+    const mouseEvent = (mouseData) => {
+        const position = mouseData.data.getLocalPosition(stage.stage);
+        const hit = new Circle({
+            x: position.x,
+            y: position.y,
+            stroke: 0xFFFF00,
+            strokeWidth: 3,
+            radius: 1
+        });
+        stage.add(hit);
+        hit.tween(1, {
+            radius: 40,
+            strokeOpacity: 0
+        }).play({
+            done: () => {
+                hit.clear();
+            }
+        });
+        shapeList.forEach((s) => {
+            s.impulse(position);
+        });
+    };
+    stage.stage.on("mousedown", mouseEvent).on("touchstart", mouseEvent);
 
     shapeList.forEach((s) => {
         s.impulse({ x: 600 * Math.random(), y: 400 * Math.random() });
