@@ -9,7 +9,7 @@ module.exports = {
         path: __dirname + "/dist"
     },
     // Enable sourcemaps for debugging webpack's output.
-    // devtool: "source-map",
+    devtool: "source-map",
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
@@ -38,24 +38,29 @@ module.exports = {
     },
 
     plugins: [
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            "window.jQuery": "jquery"
+        }),
         new ExtractTextPlugin({
             filename: "styles.css",
             allChunks: true
-        }),
-        new OptimizeCssAssetsPlugin({
-            cssProcessorOptions: {
-                discardComments: {
-                    removeAll: true
-                }
-            },
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            output: {
-                comments: false
-            }
         })
+        // new OptimizeCssAssetsPlugin({
+        //     cssProcessorOptions: {
+        //         discardComments: {
+        //             removeAll: true
+        //         }
+        //     },
+        // }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     },
+        //     output: {
+        //         comments: false
+        //     }
+        // })
     ]
 };
