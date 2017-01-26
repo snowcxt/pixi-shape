@@ -5,11 +5,13 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "@types/codemirror": "0.0.37",
     "@types/jquery": "^2.0.39",
     "@types/pixi.js": "^4.3.1",
     "@types/sammy": "0.0.17",
     "awesome-typescript-loader": "^3.0.0-beta.18",
     "bootstrap": "^3.3.7",
+    "codemirror": "^5.23.0",
     "css-loader": "^0.26.1",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
