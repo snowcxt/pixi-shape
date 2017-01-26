@@ -11548,24 +11548,21 @@ module.exports = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4RDARXhpZgA
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {"use strict";
+"use strict";
 /// <reference path="../../node_modules/@types/jquery/index.d.ts" />
 /// <reference path="../../node_modules/@types/sammy/index.d.ts" />
 __webpack_require__(4);
 __webpack_require__(3);
-var showcase_1 = __webpack_require__(2);
 __webpack_require__(5);
 __webpack_require__(18);
-var app = $.sammy(function () {
-    this.get("/", function () {
-        showcase_1.init();
-    });
-});
-$(function () {
-    app.run();
-});
+var showcase_1 = __webpack_require__(2);
+var route_1 = __webpack_require__(19);
+route_1.default([{
+        url: "/",
+        view: "index",
+        cb: showcase_1.init
+    }]);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
 /* 17 */,
@@ -13732,6 +13729,34 @@ $.extend(Sammy.DefaultLocationProxy.prototype , {
   return Sammy;
 });
 
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {"use strict";
+function default_1(routes) {
+    var app = $.sammy(function () {
+        var _this = this;
+        if (routes) {
+            routes.forEach(function (route) {
+                _this.get(route.url, function () {
+                    $("#content").load("demo/views/" + route.view + ".html", function () {
+                        route.cb();
+                    });
+                });
+            });
+        }
+    });
+    $(function () {
+        app.run();
+    });
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = default_1;
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
