@@ -11555,13 +11555,19 @@ __webpack_require__(4);
 __webpack_require__(3);
 __webpack_require__(5);
 __webpack_require__(18);
-var showcase_1 = __webpack_require__(2);
 var route_1 = __webpack_require__(19);
-route_1.default([{
+var showcase_1 = __webpack_require__(2);
+route_1.default([
+    {
         url: "/",
         view: "index",
         cb: showcase_1.init
-    }]);
+    },
+    {
+        url: "/#try",
+        view: "try"
+    }
+]);
 
 
 /***/ },
@@ -13745,7 +13751,9 @@ function default_1(routes) {
             routes.forEach(function (route) {
                 _this.get(route.url, function () {
                     $("#content").load("demo/views/" + route.view + ".html", function () {
-                        route.cb();
+                        if (route.cb) {
+                            route.cb();
+                        }
                     });
                 });
             });

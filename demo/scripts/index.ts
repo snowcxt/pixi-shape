@@ -4,11 +4,17 @@ import "../styles/theme.less";
 import "../styles/main.less";
 import "../../node_modules/jquery/dist/jquery.slim.min.js";
 import "imports?define=>false!../../node_modules/sammy/lib/sammy.js";
-import {init} from "./showcase";
 import route, {IRoute} from "./route";
+import {init} from "./showcase";
 
-route([{
-    url: "/",
-    view: "index",
-    cb: init
-}]);
+route([
+    {
+        url: "/",
+        view: "index",
+        cb: init
+    },
+    {
+        url: "/#try",
+        view: "try"
+    }
+]);

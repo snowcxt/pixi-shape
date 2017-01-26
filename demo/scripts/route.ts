@@ -1,7 +1,7 @@
 export interface IRoute {
     url: string;
     view: string;
-    cb: () => void;
+    cb?: () => void;
 }
 
 export default function(routes: IRoute[]) {
@@ -10,7 +10,9 @@ export default function(routes: IRoute[]) {
             routes.forEach(route => {
                 this.get(route.url, () => {
                     $("#content").load("demo/views/" + route.view + ".html", () => {
-                        route.cb();
+                        if (route.cb) {
+                            route.cb();
+                        }
                     });
                 });
             });
