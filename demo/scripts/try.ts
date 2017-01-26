@@ -4,7 +4,7 @@ import * as CodeMirror from "codemirror/lib/codemirror";
 import "codemirror/mode/javascript/javascript";
 
 export function initTry() {
-    CodeMirror((<HTMLTextAreaElement>document.getElementById("code")), {
+    CodeMirror(document.getElementById("code"), {
         value: "function myScript(){return 100;}\n",
         mode: "javascript"
     });
