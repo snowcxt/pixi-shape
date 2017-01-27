@@ -4,17 +4,23 @@
     <title></title>
 </head>
 
-<body style="margin: 0">
-    <h1>adfdf</h1>
+<body>
+    <div class="well">
+        <canvas id="stage"></canvas>
+    </div>
+    <p>
+        <input id="seek" type="range" style="width:100%" value="0" min="0" max="2000" step="1" />
+    </p>
+    <p>
+        <button id="play">play animation</button>
+        <button id="reverse">reverse animation</button>
+        <button id="pause">pause animation</button>
+    </p>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="/lib/pixi.js"></script>
     <script src="/demo/scripts/require.js"></script>
     <script src="/lib/pixi-shape.js"></script>
-    <script>
-        require(["Core"], function(Core) {
-            console.log(Core)
-        });
-    </script>
-    <!-- <script src="../dist/bundle.js"></script> -->
+    <script src="example.js"></script>
 </body>
 
 </html>
