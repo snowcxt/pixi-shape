@@ -16,8 +16,15 @@ require(["Core", "Path", "Animation"], function(core, path, animation) {
     stage.add(path);
     stage.draw();
 
+    var seek = document.getElementById("seek");
+
+    seek.onchange = function() {
+        tween.seek(parseInt(seek.value) / 1000);
+        stage.draw();
+    };
+
     function progress(animation) {
-        $("#seek").val(animation.elapse * 1000);
+        seek.value = animation.elapse * 1000;
     }
 
     // create an animation
@@ -32,27 +39,22 @@ require(["Core", "Path", "Animation"], function(core, path, animation) {
         rotation: -Math.PI / 2
     }, animation.Easings.EaseInOut);
 
-    $("#play").click(function() {
+    document.getElementById("play").onclick = function() {
         // play the animation
         tween.play({
             progress: progress
         });
-    });
+    };
 
-    $("#reverse").click(function() {
+    document.getElementById("reverse").onclick = function() {
         // reverse the animation
         tween.reverse({
             progress: progress
         });
-    });
+    };
 
-    $("#pause").click(function() {
+    document.getElementById("pause").onclick = function() {
         // pause the animation
         tween.pause();
-    });
-
-    $("#seek").change(function() {
-        tween.seek(parseInt($(this).val()) / 1000);
-        stage.draw();
-    });
+    };
 });
