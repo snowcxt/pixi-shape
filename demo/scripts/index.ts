@@ -3,7 +3,7 @@
 import "../styles/theme.less";
 import "../styles/main.less";
 import "jquery/dist/jquery.slim.min.js";
-import "imports?define=>false!sammy/lib/sammy.js";
+import "imports-loader?define=>false!sammy/lib/sammy.js";
 import route, {IRoute} from "./route";
 import {init} from "./showcase";
 import {initTry} from "./try";
