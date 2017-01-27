@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "commonjs",
+        "module": "amd",
         "moduleResolution": "node",
         "isolatedModules": false,
         "jsx": "react",
@@ -13,14 +13,15 @@
         "removeComments": true,
         "noLib": false,
         "preserveConstEnums": true,
-        "suppressImplicitAnyIndexErrors": true
+        "suppressImplicitAnyIndexErrors": true,
+        "outFile": "../lib/pixi-shape.js"
     },
     "exclude": [
         "node_modules",
         "typings/browser",
         "typings/browser.d.ts"
     ],
-    "compileOnSave": true,
+    "compileOnSave": false,
     "buildOnSave": false,
     "atom": {
         "rewriteTsconfig": false

@@ -9,6 +9,7 @@
     "@types/jquery": "^2.0.39",
     "@types/pixi.js": "^4.3.1",
     "@types/sammy": "0.0.17",
+    "amdclean": "^2.7.0",
     "awesome-typescript-loader": "^3.0.0-beta.18",
     "bootstrap": "^3.3.7",
     "codemirror": "^5.23.0",
@@ -27,7 +28,8 @@
     "webpack": "^2.1.0-beta.25"
   },
   "scripts": {
-    "dev": "node_modules/.bin/webpack --config demo/webpack.config.dev.js --progress --watch"
+    "dev": "node_modules/.bin/webpack --config demo/webpack.config.dev.js --progress --watch",
+    "build": "node_modules/.bin/tsc -p ./src/tsconfig.json"
   },
   "repository": {
     "type": "git",
