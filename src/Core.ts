@@ -1,4 +1,4 @@
-/// <reference path="../node_modules/@types/pixi.js/index.d.ts" />
+/// <reference path="./pixi.d.ts" />
 import {Animation, Tween} from "./Animation";
 
 export interface IPoint {
