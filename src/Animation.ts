@@ -75,7 +75,8 @@ export class Tween {
     private shape: Shape;
     private easing: (t: number, b: number, c: number, d: number) => number;
     private duration: number;
-    private to: any;
+    private init;
+    private to: any = null;
     private begin = {};
     private change = {};
     private attrs = {};
@@ -85,13 +86,29 @@ export class Tween {
 
     constructor(config: ITweenConfig, easing?: (t: number, b: number, c: number, d: number, a?: number, p?: number) => number) {
         this.shape = config.shape;
-        this.to = config.to;
         this.easing = easing || Easings.Linear;
         this.duration = config.duration;
+        this.init = Util.extend({}, this.shape.attrs);
+        this.setTo(config.to);
 
+        this.animation = new Animation(() => {
+            this.setAttrs();
+            this.progress(this.animation);
+
+            return true;
+        }, this.duration, { isToward: this.toward });
+        this.animation.stopped = true;
+    }
+
+    public setTo(to) {
+        if (this.to) {
+            this.to = Util.extend(this.to, to);
+        } else {
+            this.to = to;
+        }
         let property, value;
         for (property in this.to) {
-            value = this.shape.getAttr(property);
+            value = this.init[property];
             if (value !== undefined) {
                 switch (property) {
                     case "fill":
@@ -110,14 +127,6 @@ export class Tween {
                 }
             }
         }
-
-        this.animation = new Animation(() => {
-            this.setAttrs();
-            this.progress(this.animation);
-
-            return true;
-        }, this.duration, { isToward: this.toward });
-        this.animation.stopped = true;
     }
 
     private setAttrs() {
