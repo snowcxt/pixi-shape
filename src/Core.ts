@@ -14,6 +14,7 @@ export interface IShapeConfig {
     scaleX?: number;
     scaleY?: number;
 
+    filters?: any[];
     blur?: number;
 
     rotation?: number;
@@ -119,12 +120,16 @@ export class Stage implements IContainer {
                         i++;
                     } else {
                         anim.stopped = true;
-                        anim.finish(anim);
+                        if (anim.finish) {
+                            anim.finish(anim);
+                        }
                         this.animations.splice(i, 1);
                         l--;
                     }
                 } else {
-                    anim.finish(anim);
+                    if (anim.finish) {
+                        anim.finish(anim);
+                    }
                     this.animations.splice(i, 1);
                     l--;
                 }
@@ -180,6 +185,7 @@ export class Shape {
             opacity: 1,
             strokeWidth: 1,
             strokeOpacity: 1,
+            filters: [],
             blur: 0
         }, config);
 
@@ -208,12 +214,13 @@ export class Shape {
 
         this.shape.pivot = new PIXI.Point(this.attrs.pivotX, this.attrs.pivotY);
 
-        const filters = [];
-
+        if (!this.attrs.filters) {
+            this.attrs.filters = [];
+        }
         if (this.attrs.blur > 0) {
             const blur = new PIXI.filters.BlurFilter();
             blur.blur = this.attrs.blur;
-            filters.push(blur);
+            this.attrs.filters.push(blur);
         }
 
         // var pixelateFilter = new PIXI.PixelateFilter();
@@ -224,8 +231,8 @@ export class Shape {
         // var crossHatchFilter = new PIXI.CrossHatchFilter();
         // var rgbSplitterFilter = new PIXI.RGBSplitFilter();
 
-        if (filters.length > 0) {
-            this.shape.filters = filters;
+        if (this.attrs.filters.length > 0) {
+            this.shape.filters = this.attrs.filters;
         } else {
             this.shape.filters = null;
         }
