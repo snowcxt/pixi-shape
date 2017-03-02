@@ -13,6 +13,7 @@ export interface IShapeConfig {
     pivotY?: number;
     scaleX?: number;
     scaleY?: number;
+    opacity?: number;
 
     filters?: any[];
     blur?: number;
@@ -23,7 +24,6 @@ export interface IShapeConfig {
 
 export interface IGraphicsShapeConfig extends IShapeConfig {
     fill?: number;
-    opacity?: number;
 
     stroke?: number;
     strokeWidth?: number;
@@ -208,6 +208,8 @@ export class Shape {
         this.shape.position.x = this.attrs.x;
         this.shape.position.y = this.attrs.y;
 
+        this.shape.alpha = this.attrs.opacity;
+
         this.shape.rotation = this.attrs.rotation;
 
         this.shape.scale = new PIXI.Point(this.attrs.scaleX, this.attrs.scaleY);
@@ -300,7 +302,6 @@ export class GraphicsShape extends Shape {
     constructor(config) {
         config = Util.extend({
             fill: null,
-            opacity: 1,
             strokeWidth: 1,
             strokeOpacity: 1,
             hitArea: null
